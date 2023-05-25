@@ -15,13 +15,13 @@ export function getSortedPostsData(){
         const _fileContents = fs.readFileSync(_fullPath, 'utf-8');
         const matterResult = matter(_fileContents);
         return {
-            _id, ...allPostsData(matterResult.data as {date: string; title: string})
+            id:_id, ...matterResult.data as {date: string; title: string}
         }
     });
 
     //sort
     return allPostsData.sort((a, b) =>{
-        if(a.date < b.data){
+        if(a.date < b.date){
             return 1;
         } else {
             return -1
